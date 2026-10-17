@@ -508,3 +508,8 @@ const BANQUE = {
     ],
   },
 };
+
+// Les fichiers du dossier questions/ complètent la banque thème par thème.
+function ajoute(theme, niveau, liste) {
+  BANQUE[theme][niveau].push(...liste);
+}
