@@ -2,6 +2,7 @@
 // Format de chaque question : [énoncé, BONNE réponse, mauvaise 1, mauvaise 2, mauvaise 3, contexte].
 // La bonne réponse est toujours écrite en premier ici : l'appli mélange les propositions à l'affichage.
 // Niveaux : 1 = facile, 2 = moyen, 3 = difficile.
+// Les questions « moyennes » d'origine ont été passées en facile le 2026-10-17 (jugées trop simples).
 
 const THEMES = [
   { id: 'sciences', label: 'Sciences et techniques', emoji: '🔬' },
@@ -29,8 +30,6 @@ const BANQUE = {
         'Grâce à la lumière du soleil, les plantes transforment le dioxyde de carbone (CO₂) de l\'air et l\'eau en sucres, et rejettent de l\'oxygène. C\'est la chlorophylle, le pigment vert des feuilles, qui capte la lumière. L\'essentiel de l\'oxygène que nous respirons vient de ce processus, en grande partie grâce au plancton végétal des océans.'],
       ['Quel savant a formulé la théorie de la relativité ?', 'Albert Einstein', 'Isaac Newton', 'Galilée', 'Niels Bohr',
         'En 1905, son « année miraculeuse », Einstein publie la relativité restreinte et la célèbre formule E = mc². Dix ans plus tard, en 1915, il présente la relativité générale, qui explique la gravitation comme une courbure de l\'espace-temps. Fait étonnant : son prix Nobel de 1921 ne récompense pas la relativité, jugée trop controversée à l\'époque, mais ses travaux sur l\'effet photoélectrique.'],
-    ],
-    2: [
       ['Quelle est la vitesse approximative de la lumière dans le vide ?', '300 000 km/s', '30 000 km/s', '3 000 000 km/s', '300 km/s',
         'La valeur exacte est de 299 792 458 m/s, et depuis 1983 c\'est même elle qui sert à définir le mètre. Le premier à montrer que la lumière ne voyage pas instantanément est le Danois Ole Rømer, en 1676, en observant les éclipses d\'une lune de Jupiter. La lumière du Soleil met environ 8 minutes et 20 secondes à nous parvenir : on voit donc toujours le Soleil tel qu\'il était un peu plus de 8 minutes plus tôt.'],
       ['Qui a mis au point le premier vaccin contre la rage, en 1885 ?', 'Louis Pasteur', 'Robert Koch', 'Alexander Fleming', 'Marie Curie',
@@ -41,6 +40,18 @@ const BANQUE = {
         'L\'hydrogène représente environ les trois quarts de la masse de la matière ordinaire de l\'Univers. C\'est l\'élément le plus simple : un seul proton et un seul électron. Il est apparu juste après le Big Bang. Les étoiles, comme notre Soleil, brillent en fusionnant de l\'hydrogène en hélium dans leur cœur, et ce sont elles qui fabriquent ensuite les éléments plus lourds, dont le carbone et l\'oxygène qui nous composent.'],
       ['Qui a découvert la pénicilline ?', 'Alexander Fleming', 'Louis Pasteur', 'Robert Koch', 'Edward Jenner',
         'En 1928, en rentrant de vacances, le médecin écossais Alexander Fleming remarque qu\'une moisissure a contaminé une de ses boîtes de culture et tué les bactéries autour d\'elle. C\'est la pénicilline, le premier antibiotique. Mais il faudra attendre la Seconde Guerre mondiale pour que Howard Florey et Ernst Chain parviennent à la produire en grande quantité. Les trois hommes partagent le prix Nobel de médecine en 1945.'],
+    ],
+    2: [
+      ['Quel savant a établi la classification périodique des éléments en 1869 ?', 'Dmitri Mendeleïev', 'Antoine Lavoisier', 'John Dalton', 'Niels Bohr',
+        'Le chimiste russe Mendeleïev range les éléments connus selon leur masse et leurs propriétés, en écrivant chacun sur une carte, comme pour une réussite. Son coup de génie : laisser des cases vides pour des éléments encore inconnus, dont il prédit les propriétés. Quand le Français Lecoq de Boisbaudran découvre le gallium en 1875, il correspond presque exactement à l\'une de ses prédictions. L\'élément 101 s\'appelle le mendélévium en son honneur.'],
+      ['Quel organe produit l\'insuline ?', 'Le pancréas', 'Le foie', 'La rate', 'La thyroïde',
+        'L\'insuline est fabriquée par de petits amas de cellules du pancréas, les îlots de Langerhans. Elle permet au sucre du sang d\'entrer dans les cellules. Avant sa découverte en 1921 à Toronto par Frederick Banting et Charles Best, le diabète de type 1 était mortel. Le premier patient traité, en 1922, est un garçon de 14 ans, Leonard Thompson. Les découvreurs ont cédé leur brevet à l\'université pour un dollar symbolique, afin que le traitement reste accessible.'],
+      ['Combien de temps met la lumière de la Lune pour arriver jusqu\'à nous ?', 'Environ 1,3 seconde', 'Environ 8 minutes', 'Environ 13 secondes', 'Environ un dixième de seconde',
+        'La Lune est en moyenne à 384 400 km de la Terre. On mesure cette distance au centimètre près en envoyant des rayons laser sur des réflecteurs déposés par les missions Apollo et les robots soviétiques Lunokhod, puis en chronométrant leur retour. Ces mesures ont révélé que la Lune s\'éloigne de nous d\'environ 3,8 cm par an. Les 8 minutes correspondent, elles, à la lumière du Soleil.'],
+      ['Quel physicien français a donné son nom à l\'unité d\'intensité du courant électrique ?', 'André-Marie Ampère', 'Charles-Augustin de Coulomb', 'Augustin Fresnel', 'Pierre-Simon de Laplace',
+        'Né à Lyon en 1775, Ampère vit un drame à 18 ans : son père est guillotiné pendant la Révolution. Autodidacte de génie, il fonde en 1820 l\'électrodynamique, quelques semaines seulement après que le Danois Ørsted a montré qu\'un courant électrique fait dévier une boussole. Attention au piège : Coulomb, lui aussi français, a donné son nom à l\'unité de charge électrique, et non de courant.'],
+      ['Quel est le gaz le plus abondant dans l\'atmosphère terrestre ?', 'L\'azote', 'L\'oxygène', 'L\'argon', 'Le dioxyde de carbone',
+        'L\'air est composé d\'environ 78 % d\'azote, 21 % d\'oxygène et près de 1 % d\'argon. Le dioxyde de carbone ne représente qu\'environ 0,04 %, ce qui suffit pourtant à jouer un rôle majeur sur le climat. Les plantes ne peuvent pas utiliser directement l\'azote de l\'air : ce sont des bactéries, notamment dans les racines des légumineuses comme les pois ou le trèfle, qui le transforment pour elles.'],
     ],
     3: [
       ['Quel scientifique a découvert la radioactivité naturelle en 1896 ?', 'Henri Becquerel', 'Marie Curie', 'Pierre Curie', 'Wilhelm Röntgen',
@@ -68,8 +79,6 @@ const BANQUE = {
         'Le guacamole vient du Mexique et remonte aux Aztèques. Son nom vient du nahuatl, leur langue, ahuacamolli, qui signifie à peu près « sauce d\'avocat ». On écrase l\'avocat avec du citron vert, de l\'oignon, de la coriandre et du piment. Le Mexique reste de loin le premier producteur mondial d\'avocats.'],
       ['Quelle ville a donné son nom à une célèbre moutarde ?', 'Dijon', 'Lyon', 'Reims', 'Nancy',
         'En 1856, le Dijonnais Jean Naigeon remplace le vinaigre par du verjus, le jus acide de raisins pas mûrs, ce qui donne une moutarde plus forte et plus fine. Mais « moutarde de Dijon » désigne une recette, pas une origine protégée : elle peut être fabriquée n\'importe où, et une grande partie des graines vient du Canada. La Bourgogne relance aujourd\'hui la culture locale de la graine de moutarde.'],
-    ],
-    2: [
       ['Quel fromage au lait de brebis est affiné dans des caves naturelles de l\'Aveyron ?', 'Le roquefort', 'Le comté', 'Le camembert', 'Le reblochon',
         'Le roquefort est affiné dans les caves du Combalou, à Roquefort-sur-Soulzon. Des failles dans la roche, les « fleurines », y font circuler un air frais et humide idéal pour le Penicillium roqueforti, le champignon qui forme ses veines bleues. En 1925, il devient le premier fromage français à obtenir une appellation d\'origine.'],
       ['Quel pays est le premier producteur mondial de café ?', 'Le Brésil', 'La Colombie', 'Le Vietnam', 'L\'Éthiopie',
@@ -80,6 +89,18 @@ const BANQUE = {
         'Le gouda doit son nom à la ville de Gouda, en Hollande-Méridionale, où il est vendu sur la place du marché depuis le Moyen Âge. Les paysans y apportaient leurs meules pour les faire peser et les vendre, une tradition que l\'on rejoue encore l\'été pour les touristes. Il représente plus de la moitié de la production fromagère des Pays-Bas.'],
       ['Quelle épice est la plus chère au monde ?', 'Le safran', 'La vanille', 'La cardamome', 'Le poivre',
         'Le safran est formé des pistils d\'une fleur, le crocus. Chaque fleur n\'en porte que trois, cueillis à la main. Il faut environ 150 000 fleurs pour obtenir un seul kilo de safran sec, d\'où son prix, qui peut dépasser celui de l\'or au poids. L\'Iran est de loin le premier producteur mondial, et on en cultive aussi un peu en France, notamment dans le Quercy.'],
+    ],
+    2: [
+      ['Quel fromage du Jura est traversé par une fine raie noire ?', 'Le morbier', 'Le comté', 'Le mont-d\'or', 'Le bleu de Gex',
+        'Autrefois, les paysans du Jura fabriquaient le morbier avec le caillé restant de la traite du soir. Pour le protéger des insectes jusqu\'à la traite du matin, ils le couvraient d\'une fine couche de suie prise sous le chaudron, puis ajoutaient le caillé du matin par-dessus. La suie a été remplacée par du charbon végétal, mais la raie est restée. Le morbier est protégé par une appellation d\'origine depuis 2000.'],
+      ['D\'où le cassoulet tire-t-il son nom ?', 'Du plat en terre cuite dans lequel il cuit', 'Du nom de son inventeur', 'Du mot occitan qui désigne le haricot', 'D\'un village de l\'Aude',
+        'Le cassoulet doit son nom à la « cassole », une terrine en terre cuite fabriquée traditionnellement à Issel, près de Castelnaudary. Castelnaudary, Carcassonne et Toulouse se disputent sa paternité, chacune avec sa recette. Selon la légende, il serait né pendant la guerre de Cent Ans, lors du siège de Castelnaudary. Mais les haricots, venus d\'Amérique, ne sont arrivés qu\'au XVIᵉ siècle : on utilisait sans doute des fèves auparavant.'],
+      ['Quel cépage est utilisé pour les vins rouges du Beaujolais ?', 'Le gamay', 'Le pinot noir', 'Le merlot', 'La syrah',
+        'En 1395, le duc de Bourgogne Philippe le Hardi interdit le gamay sur ses terres, le jugeant « très mauvais et déloyal », pour favoriser le pinot noir. Le gamay s\'épanouit alors plus au sud, sur les sols granitiques du Beaujolais. Le Beaujolais nouveau, vin primeur mis en vente le troisième jeudi de novembre, a fait connaître ce cépage dans le monde entier.'],
+      ['Quelle confiserie est la grande spécialité de Montélimar ?', 'Le nougat', 'Le calisson', 'Le berlingot', 'La bêtise',
+        'Le nougat de Montélimar est fait de miel, de blancs d\'œufs montés et d\'amandes, parfois de pistaches. Selon la tradition, l\'agronome Olivier de Serres aurait planté des amandiers dans la région au début du XVIIᵉ siècle. Le succès explose au XXᵉ siècle grâce à la Nationale 7 : les vacanciers en route vers le Midi s\'y arrêtaient pour en acheter. Le calisson est d\'Aix-en-Provence, le berlingot de Carpentras et la bêtise de Cambrai.'],
+      ['De quel pays la feta est-elle originaire ?', 'La Grèce', 'La Turquie', 'La Bulgarie', 'Chypre',
+        'La feta est fabriquée avec du lait de brebis, auquel on peut ajouter jusqu\'à 30 % de lait de chèvre, et conservée dans de la saumure. Après une longue bataille juridique contre d\'autres pays européens, dont le Danemark, qui en produisaient au lait de vache, la Grèce obtient en 2002 qu\'elle devienne une appellation d\'origine protégée. Dans l\'Odyssée d\'Homère, le cyclope Polyphème fabrique déjà un fromage qui lui ressemble.'],
     ],
     3: [
       ['Quel chef a créé la pêche Melba ?', 'Auguste Escoffier', 'Antonin Carême', 'Paul Bocuse', 'Jean Anthelme Brillat-Savarin',
@@ -107,8 +128,6 @@ const BANQUE = {
         'Le Corbeau et le Renard ouvre le premier recueil des Fables de La Fontaine, publié en 1668 et dédié au fils de Louis XIV. La Fontaine s\'inspire largement du Grec Ésope, qui vivait plus de 2 000 ans avant lui. Il écrit en tout plus de 240 fables où les animaux servent à critiquer les défauts des hommes et la société de son temps.'],
       ['Quel détective a été créé par Arthur Conan Doyle ?', 'Sherlock Holmes', 'Hercule Poirot', 'Le commissaire Maigret', 'Arsène Lupin',
         'Sherlock Holmes apparaît en 1887 dans Une étude en rouge. Il habite au 221B Baker Street à Londres, avec son ami le docteur Watson. Lassé de son personnage, Conan Doyle le fait mourir en 1893 dans les chutes du Reichenbach, en Suisse. Mais face à la colère des lecteurs, il finit par le ressusciter quelques années plus tard. Hercule Poirot, lui, est un personnage d\'Agatha Christie.'],
-    ],
-    2: [
       ['Qui est l\'auteur de L\'Étranger (1942) ?', 'Albert Camus', 'Jean-Paul Sartre', 'André Gide', 'André Malraux',
         'L\'Étranger raconte l\'histoire de Meursault, un employé de bureau d\'Alger qui tue un homme presque sans raison et semble indifférent à tout. C\'est l\'un des romans français les plus lus au monde. Né en Algérie dans une famille pauvre, Camus reçoit le prix Nobel de littérature en 1957, à seulement 44 ans. Il meurt trois ans plus tard dans un accident de voiture.'],
       ['Quel poète a publié Les Fleurs du mal en 1857 ?', 'Charles Baudelaire', 'Arthur Rimbaud', 'Paul Verlaine', 'Stéphane Mallarmé',
@@ -119,6 +138,18 @@ const BANQUE = {
         'Cette œuvre immense en sept volumes paraît de 1913 à 1927, les derniers après la mort de Proust en 1922. Son passage le plus célèbre est celui de la madeleine : en la trempant dans son thé, le narrateur voit ressurgir tous ses souvenirs d\'enfance. Fait amusant, le premier tome avait été refusé par plusieurs éditeurs, dont Gallimard, qui le regretta vite. Proust reçoit le prix Goncourt en 1919.'],
       ['Quel écrivain de la Renaissance a créé les géants Gargantua et Pantagruel ?', 'François Rabelais', 'Michel de Montaigne', 'Pierre de Ronsard', 'François Villon',
         'Rabelais, à la fois moine, médecin et écrivain, publie Pantagruel en 1532 puis Gargantua en 1534. Ses récits comiques et souvent grossiers se moquent de l\'Église et des savants de son temps, ce qui lui vaut d\'être condamné par la Sorbonne. On lui doit l\'adjectif « gargantuesque », pour un repas énorme, et la devise de son abbaye imaginaire de Thélème : « Fais ce que voudras ».'],
+    ],
+    2: [
+      ['Quel écrivain a créé le personnage d\'Eugène de Rastignac ?', 'Honoré de Balzac', 'Stendhal', 'Gustave Flaubert', 'Guy de Maupassant',
+        'Rastignac apparaît dans Le Père Goriot (1835). À la fin du roman, depuis le cimetière du Père-Lachaise, il lance un défi à la ville de Paris étendue à ses pieds. Il réapparaît dans de nombreux autres romans de La Comédie humaine, le grand ensemble d\'environ 90 œuvres où Balzac fait revenir ses personnages. Son nom est devenu un nom commun : « un Rastignac » désigne un jeune ambitieux prêt à tout pour réussir.'],
+      ['Comment s\'appelle le sonneur de cloches bossu de Notre-Dame de Paris ?', 'Quasimodo', 'Frollo', 'Gringoire', 'Phœbus',
+        'Victor Hugo publie Notre-Dame de Paris en 1831, en partie pour défendre la cathédrale, alors très abîmée et menacée. Le succès du roman relance l\'intérêt pour l\'édifice, qui est restauré par l\'architecte Viollet-le-Duc à partir de 1844. Après l\'incendie de la cathédrale en 2019, le roman est redevenu un best-seller en France. Frollo est l\'archidiacre qui a recueilli Quasimodo.'],
+      ['Quel philosophe des Lumières a écrit Candide ?', 'Voltaire', 'Jean-Jacques Rousseau', 'Denis Diderot', 'Montesquieu',
+        'Candide paraît en 1759 de façon anonyme, car il est très provocateur. Voltaire y raconte les malheurs d\'un jeune homme naïf, élevé par le précepteur Pangloss, qui répète que « tout est pour le mieux dans le meilleur des mondes ». C\'est une moquerie de la philosophie optimiste de Leibniz, écrite après le terrible tremblement de terre de Lisbonne de 1755. Le conte se termine par la célèbre leçon : « il faut cultiver notre jardin ».'],
+      ['Quel poète a écrit Le Dormeur du val ?', 'Arthur Rimbaud', 'Paul Verlaine', 'Victor Hugo', 'Guillaume Apollinaire',
+        'Rimbaud écrit ce sonnet en 1870, à 16 ans, pendant la guerre franco-prussienne. Le poème décrit un jeune soldat qui semble dormir dans la nature, et l\'on découvre au dernier vers qu\'il est mort. Après une vie de poète fulgurante et une liaison tumultueuse avec Verlaine, Rimbaud cesse d\'écrire vers 20 ans. Il devient négociant en Afrique de l\'Est et meurt à Marseille en 1891, à 37 ans.'],
+      ['Quel roman d\'Émile Zola se déroule dans le monde des mineurs du Nord ?', 'Germinal', 'L\'Assommoir', 'Nana', 'La Bête humaine',
+        'Pour préparer Germinal (1885), Zola se rend en 1884 dans les mines d\'Anzin, près de Valenciennes, en pleine grève, et descend lui-même au fond d\'un puits. Il raconte la révolte de mineurs menée par Étienne Lantier. Le roman a tellement marqué les ouvriers qu\'en 1902, lors des funérailles de Zola, une délégation de mineurs a suivi le cortège en criant « Germinal ! ».'],
     ],
     3: [
       ['Quel écrivain a reçu deux fois le prix Goncourt, dont une sous le pseudonyme d\'Émile Ajar ?', 'Romain Gary', 'Boris Vian', 'Georges Perec', 'Raymond Queneau',
@@ -146,8 +177,6 @@ const BANQUE = {
         'Le 21 juillet 1969 (heure française), Neil Armstrong pose le pied sur la Lune lors de la mission Apollo 11, suivi de Buzz Aldrin. Michael Collins reste en orbite dans le module de commande. Environ 600 millions de personnes suivent l\'événement en direct à la télévision. Au total, douze astronautes américains ont marché sur la Lune, le dernier en décembre 1972.'],
       ['Quel mur est tombé le 9 novembre 1989 ?', 'Le mur de Berlin', 'Le mur d\'Hadrien', 'Le mur des Lamentations', 'La Grande Muraille',
         'Construit en 1961 par l\'Allemagne de l\'Est pour empêcher ses habitants de fuir vers l\'Ouest, le mur coupait Berlin en deux sur plus de 40 km et entourait Berlin-Ouest sur environ 155 km. Le 9 novembre 1989, après une annonce confuse à la télévision, des milliers de Berlinois se pressent aux postes-frontières, qui finissent par s\'ouvrir. L\'Allemagne est réunifiée moins d\'un an plus tard, le 3 octobre 1990.'],
-    ],
-    2: [
       ['Quel traité a mis fin à la Première Guerre mondiale avec l\'Allemagne ?', 'Le traité de Versailles', 'Le traité de Paris', 'Les traités de Westphalie', 'Le traité de Francfort',
         'Il est signé le 28 juin 1919 dans la galerie des Glaces du château de Versailles. Le lieu n\'est pas choisi au hasard : c\'est là que l\'Empire allemand avait été proclamé en 1871, après la défaite française. La date non plus : c\'est cinq ans jour pour jour après l\'assassinat de l\'archiduc François-Ferdinand à Sarajevo. Très dur pour l\'Allemagne, le traité nourrit un ressentiment que beaucoup d\'historiens comptent parmi les causes de la Seconde Guerre mondiale.'],
       ['Quelle bataille marque la défaite de Vercingétorix face à Jules César, en 52 av. J.-C. ?', 'Alésia', 'Gergovie', 'Bibracte', 'Marignan',
@@ -158,6 +187,18 @@ const BANQUE = {
         'Fille de l\'impératrice Marie-Thérèse d\'Autriche, Marie-Antoinette épouse le futur Louis XVI en 1770, à 14 ans. Le surnom, très hostile, rappelle son origine étrangère. On lui prête la phrase « Qu\'ils mangent de la brioche » à propos du peuple affamé, mais rien ne prouve qu\'elle l\'ait dite : Rousseau la rapporte déjà avant son arrivée en France. Elle est guillotinée le 16 octobre 1793.'],
       ['En quelle année Christophe Colomb a-t-il atteint l\'Amérique ?', '1492', '1453', '1515', '1498',
         'Le 12 octobre 1492, après plus de deux mois de traversée, Colomb accoste dans une île des Bahamas. Financé par les souverains espagnols, il cherchait une route vers l\'Asie par l\'ouest et restera persuadé jusqu\'à sa mort d\'avoir atteint les Indes : c\'est pourquoi les habitants ont été appelés « Indiens ». Le continent porte le nom d\'un autre navigateur, Amerigo Vespucci, qui comprit qu\'il s\'agissait d\'un nouveau monde.'],
+    ],
+    2: [
+      ['Quel roi de France était surnommé « le Bien-Aimé » ?', 'Louis XV', 'Louis XIII', 'Louis XII', 'Charles VII',
+        'En 1744, Louis XV tombe gravement malade à Metz, et la France entière prie pour sa guérison : il reçoit alors ce surnom. Mais au fil de son long règne de 59 ans, sa popularité s\'effondre, à cause des guerres coûteuses et de ses favorites, comme Madame de Pompadour. À sa mort en 1774, il est enterré presque en cachette, de nuit, pour éviter les insultes de la foule.'],
+      ['En quelle année a eu lieu la bataille de Waterloo ?', '1815', '1805', '1812', '1814',
+        'Le 18 juin 1815, près de Bruxelles, Napoléon est battu par les armées du Britannique Wellington et du Prussien Blücher. Cette défaite met fin aux « Cent-Jours », la courte période où Napoléon, revenu de son exil sur l\'île d\'Elbe, avait repris le pouvoir. Il est ensuite exilé sur l\'île de Sainte-Hélène, au milieu de l\'Atlantique Sud, où il meurt en 1821.'],
+      ['Qui fut la dernière souveraine de l\'Égypte antique ?', 'Cléopâtre VII', 'Néfertiti', 'Hatchepsout', 'Néfertari',
+        'Cléopâtre appartient à la dynastie des Ptolémées, d\'origine grecque macédonienne, qui règne sur l\'Égypte depuis la mort d\'Alexandre le Grand. Selon l\'historien Plutarque, elle est la première de sa famille à parler égyptien. Alliée puis amante de Jules César, puis de Marc Antoine, elle est vaincue par Octave à la bataille d\'Actium en 31 av. J.-C. Elle se donne la mort l\'année suivante, et l\'Égypte devient une province romaine.'],
+      ['En quelle année la IIIᵉ République a-t-elle été proclamée ?', '1870', '1848', '1875', '1871',
+        'Le 2 septembre 1870, Napoléon III est fait prisonnier par les Prussiens à Sedan. Deux jours plus tard, le 4 septembre, Léon Gambetta proclame la République à l\'Hôtel de Ville de Paris. Ses institutions ne sont fixées qu\'en 1875, et le mot « République » n\'entre dans les textes que grâce à l\'amendement Wallon, adopté à une seule voix de majorité. Elle durera pourtant jusqu\'en 1940, un record.'],
+      ['Quelle était la capitale de l\'Empire byzantin ?', 'Constantinople', 'Rome', 'Athènes', 'Antioche',
+        'L\'empereur Constantin fonde Constantinople en 330 sur le site de l\'ancienne cité grecque de Byzance. Après la chute de Rome en 476, elle reste pendant près de mille ans la capitale de l\'Empire romain d\'Orient. Le 29 mai 1453, elle est prise par le sultan ottoman Mehmed II, une date que certains historiens retiennent comme la fin du Moyen Âge. Elle s\'appelle aujourd\'hui Istanbul.'],
     ],
     3: [
       ['Quels traités, signés en 1648, ont mis fin à la guerre de Trente Ans ?', 'Les traités de Westphalie', 'Les traités d\'Utrecht', 'Le traité de Versailles', 'Les traités de Nimègue',
@@ -185,8 +226,6 @@ const BANQUE = {
         'Avec plus de 17 millions de km², la Russie est presque deux fois plus grande que le Canada, deuxième. Elle s\'étend sur deux continents, l\'Europe et l\'Asie, et sur 11 fuseaux horaires. Quand il est midi à Kaliningrad, à l\'ouest, il est déjà 22 heures au Kamtchatka, à l\'extrême est.'],
       ['Quel est le plus grand désert chaud du monde ?', 'Le Sahara', 'Le désert de Gobi', 'Le Kalahari', 'L\'Atacama',
         'Le Sahara couvre environ 9 millions de km², presque la taille des États-Unis. Contrairement à l\'image habituelle, il n\'est formé de dunes que sur une petite partie : le reste est fait de plateaux rocheux et de pierres. Il y a environ 6 000 à 10 000 ans, il était vert, avec des lacs, des girafes et des hippopotames, comme le montrent les peintures rupestres. Le plus grand désert tout court est l\'Antarctique, un désert froid.'],
-    ],
-    2: [
       ['Quelle est la capitale de l\'Australie ?', 'Canberra', 'Sydney', 'Melbourne', 'Perth',
         'Lors de la création de l\'Australie en 1901, Sydney et Melbourne se disputaient le titre de capitale. On décida donc de construire une ville nouvelle entre les deux : Canberra. Elle a été dessinée par deux architectes américains, Walter Burley Griffin et Marion Mahony Griffin, gagnants d\'un concours international. Le Parlement s\'y installe en 1927.'],
       ['Quel détroit sépare l\'Europe de l\'Afrique ?', 'Le détroit de Gibraltar', 'Le Bosphore', 'Le détroit de Messine', 'Le détroit d\'Ormuz',
@@ -197,6 +236,18 @@ const BANQUE = {
         'Il s\'agit de la Belgique, du Luxembourg, de l\'Allemagne, de la Suisse, de l\'Italie, de Monaco, d\'Andorre et de l\'Espagne. Mais la plus longue frontière terrestre de la France n\'est pas en Europe : c\'est celle de la Guyane avec le Brésil, longue d\'environ 730 km. La France partage aussi une frontière avec les Pays-Bas, sur l\'île de Saint-Martin, aux Antilles.'],
       ['Quelle est la capitale du Canada ?', 'Ottawa', 'Toronto', 'Montréal', 'Vancouver',
         'En 1857, la reine Victoria choisit Ottawa, une ville moyenne, plutôt que Toronto, Montréal, Québec ou Kingston, qui se disputaient le titre. Situé sur la rivière des Outaouais, à la frontière entre l\'Ontario anglophone et le Québec francophone, Ottawa était un bon compromis. En hiver, le canal Rideau qui traverse la ville gèle et devient l\'une des plus longues patinoires du monde.'],
+    ],
+    2: [
+      ['Quelle est la capitale de la Turquie ?', 'Ankara', 'Istanbul', 'Izmir', 'Antalya',
+        'En 1923, Mustafa Kemal Atatürk, fondateur de la Turquie moderne, choisit Ankara, alors une petite ville d\'Anatolie, plutôt qu\'Istanbul, l\'ancienne capitale de l\'Empire ottoman. C\'était un symbole de rupture avec l\'ancien régime, et une ville plus facile à défendre, au centre du pays. Istanbul reste de loin la plus grande ville du pays, avec plus de 15 millions d\'habitants.'],
+      ['Quel cours d\'eau traverse Bordeaux ?', 'La Garonne', 'La Dordogne', 'La Gironde', 'Le Lot',
+        'À Bordeaux, la Garonne forme un grand méandre en forme de croissant, d\'où le surnom de « port de la Lune ». Ce quartier est inscrit au patrimoine mondial de l\'UNESCO depuis 2007. Un peu plus en aval, la Garonne rejoint la Dordogne pour former l\'estuaire de la Gironde, le plus grand estuaire d\'Europe de l\'Ouest. On peut y observer le mascaret, une vague qui remonte le fleuve à marée montante.'],
+      ['Quel pays possède les plus longues côtes du monde ?', 'Le Canada', 'La Norvège', 'L\'Indonésie', 'La Russie',
+        'Avec ses milliers d\'îles dans l\'Arctique, le Canada compte plus de 200 000 km de côtes, de loin le record mondial. Mais mesurer une côte est piégeux : plus on mesure finement, en suivant chaque rocher, plus la longueur augmente. C\'est le « paradoxe du littoral », étudié par le mathématicien Benoît Mandelbrot, à l\'origine de la théorie des fractales.'],
+      ['Quel est le plus haut sommet d\'Afrique ?', 'Le Kilimandjaro', 'Le mont Kenya', 'Le Ruwenzori', 'Le Toubkal',
+        'Situé en Tanzanie, le Kilimandjaro culmine à environ 5 895 mètres. C\'est un volcan isolé qui se dresse au milieu de la savane. Il a été gravi pour la première fois en 1889 par l\'Allemand Hans Meyer et l\'Autrichien Ludwig Purtscheller. Ses célèbres glaciers sommitaux fondent rapidement et pourraient disparaître dans les prochaines décennies.'],
+      ['Combien la France compte-t-elle de départements, outre-mer compris ?', '101', '95', '96', '100',
+        'Les départements sont créés en 1790, pendant la Révolution, au nombre de 83. Ils ont été dessinés pour que chaque habitant puisse rejoindre le chef-lieu en une journée à cheval. La métropole en compte aujourd\'hui 96, et l\'outre-mer 5 : la Guadeloupe, la Martinique, la Guyane, La Réunion et Mayotte, devenue le 101ᵉ département en 2011.'],
     ],
     3: [
       ['Quel est le lac le plus profond du monde ?', 'Le lac Baïkal', 'Le lac Tanganyika', 'Le lac Supérieur', 'Le lac Titicaca',
@@ -224,8 +275,6 @@ const BANQUE = {
         'Le Penseur est d\'abord une petite figure de La Porte de l\'Enfer, une immense porte en bronze inspirée de La Divine Comédie de Dante, à laquelle Rodin travaille à partir de 1880. Il représentait à l\'origine Dante lui-même, méditant sur son poème. Agrandie ensuite, la statue est devenue un symbole universel de la réflexion. On peut l\'admirer au musée Rodin, à Paris.'],
       ['Quel artiste a peint Guernica ?', 'Pablo Picasso', 'Salvador Dalí', 'Joan Miró', 'Francisco de Goya',
         'Le 26 avril 1937, pendant la guerre civile espagnole, la ville basque de Guernica est bombardée par des avions allemands et italiens alliés de Franco. Picasso, qui vit à Paris, peint en quelques semaines cette immense toile en noir et blanc pour l\'Exposition internationale. Il refuse qu\'elle aille en Espagne tant que le pays n\'est pas une démocratie : elle n\'y arrive qu\'en 1981, et se trouve aujourd\'hui à Madrid.'],
-    ],
-    2: [
       ['Quel mouvement artistique doit son nom à un tableau de Claude Monet ?', 'L\'impressionnisme', 'Le fauvisme', 'Le cubisme', 'Le surréalisme',
         'En 1874, un groupe de peintres refusés par le Salon officiel organise sa propre exposition à Paris. Monet y présente Impression, soleil levant, une vue du port du Havre peinte rapidement. Le critique Louis Leroy se moque d\'eux en les traitant d\'« impressionnistes ». Les peintres reprennent fièrement le mot. Le tableau est aujourd\'hui exposé au musée Marmottan, à Paris.'],
       ['Qui a peint le plafond de la chapelle Sixtine ?', 'Michel-Ange', 'Raphaël', 'Léonard de Vinci', 'Botticelli',
@@ -236,6 +285,18 @@ const BANQUE = {
         'Vers 1900, pour l\'ouverture du métro, Hector Guimard crée des entrées en fonte peinte en vert, inspirées des formes végétales : tiges, feuilles et lampes en forme de bourgeons. Ce style très moderne, l\'Art nouveau, a été critiqué à l\'époque et beaucoup d\'entrées ont été détruites. Celles qui restent sont aujourd\'hui protégées comme monuments historiques, et des copies ont été offertes à plusieurs villes du monde.'],
       ['Quel peintre néerlandais a peint La Jeune Fille à la perle ?', 'Johannes Vermeer', 'Rembrandt', 'Vincent van Gogh', 'Pierre Paul Rubens',
         'Vermeer peint ce tableau vers 1665 à Delft. Ce n\'est pas un vrai portrait mais une « tronie », une étude de visage avec un costume exotique. On sait très peu de choses sur la vie de Vermeer, et seulement une trentaine de tableaux lui sont attribués. Le tableau se trouve au musée Mauritshuis à La Haye, et a inspiré un roman puis un film en 2003, avec Scarlett Johansson.'],
+    ],
+    2: [
+      ['Quel peintre est célèbre pour ses tableaux de danseuses de l\'Opéra ?', 'Edgar Degas', 'Auguste Renoir', 'Henri de Toulouse-Lautrec', 'Édouard Manet',
+        'Degas a consacré une grande partie de son œuvre aux danseuses, peintes en répétition, dans les coulisses ou pendant le spectacle. Il était fasciné par le mouvement. Sa sculpture La Petite Danseuse de quatorze ans, présentée en 1881, fait scandale : réalisée en cire, elle porte un vrai tutu, de vrais chaussons et de vrais cheveux, ce qui choque le public. Des bronzes ont été coulés après sa mort.'],
+      ['Dans quelle ville se trouve le musée du Prado ?', 'Madrid', 'Barcelone', 'Séville', 'Lisbonne',
+        'Ouvert en 1819, le Prado présente l\'immense collection des rois d\'Espagne. On y admire notamment Les Ménines de Velázquez, souvent citée comme l\'une des plus grandes peintures de l\'histoire, et de nombreuses œuvres de Goya, dont Le Tres de Mayo, qui montre l\'exécution d\'Espagnols par les soldats de Napoléon en 1808.'],
+      ['Quel sculpteur a conçu la statue de la Liberté ?', 'Auguste Bartholdi', 'Gustave Eiffel', 'Auguste Rodin', 'Jean-Baptiste Carpeaux',
+        'Offerte par la France aux États-Unis pour le centenaire de leur indépendance, la statue est inaugurée à New York en 1886. Le sculpteur Bartholdi, originaire de Colmar, en a dessiné les formes ; Gustave Eiffel a conçu sa structure métallique intérieure. Sa couleur verte vient de l\'oxydation du cuivre : à l\'origine, elle avait la couleur brun-rouge d\'une casserole neuve.'],
+      ['Avec qui Pablo Picasso a-t-il inventé le cubisme ?', 'Georges Braque', 'Henri Matisse', 'Fernand Léger', 'Juan Gris',
+        'Vers 1907-1908, Picasso et Braque travaillent presque côte à côte et décomposent les objets en formes géométriques, vues sous plusieurs angles à la fois. Le mot « cubisme » vient d\'un critique, Louis Vauxcelles, qui parle de « petits cubes » à propos des paysages de Braque. Leur collaboration s\'arrête avec la Première Guerre mondiale, où Braque est grièvement blessé à la tête en 1915.'],
+      ['Qui a peint La Liberté guidant le peuple ?', 'Eugène Delacroix', 'Théodore Géricault', 'Jacques-Louis David', 'Gustave Courbet',
+        'Delacroix peint ce tableau après les « Trois Glorieuses », la révolution de juillet 1830 qui renverse le roi Charles X. La Liberté, coiffée d\'un bonnet phrygien et brandissant le drapeau tricolore, guide le peuple sur une barricade. Acheté par l\'État, le tableau est vite caché, jugé trop révolutionnaire. On dit souvent que le gamin aux pistolets aurait inspiré à Victor Hugo le personnage de Gavroche.'],
     ],
     3: [
       ['Qui a peint Le Radeau de la Méduse ?', 'Théodore Géricault', 'Eugène Delacroix', 'Jacques-Louis David', 'Jean-Auguste-Dominique Ingres',
@@ -263,8 +324,6 @@ const BANQUE = {
         'Spielberg devient célèbre en 1975 avec Les Dents de la mer, considéré comme le premier « blockbuster » de l\'été. Il enchaîne avec E.T. l\'extra-terrestre en 1982, inspiré de sa propre enfance solitaire après le divorce de ses parents. En 1993, Jurassic Park révolutionne les effets spéciaux en mêlant animatronique et images de synthèse. Il réalise la même année La Liste de Schindler.'],
       ['Quel film français de 2011 réunit Omar Sy et François Cluzet ?', 'Intouchables', 'Bienvenue chez les Ch\'tis', 'Le Dîner de cons', 'Les Visiteurs',
         'Réalisé par Olivier Nakache et Éric Toledano, Intouchables s\'inspire de l\'histoire vraie de Philippe Pozzo di Borgo, un riche aristocrate tétraplégique, et de son aide à domicile Abdel Sellou. Le film attire environ 19 millions de spectateurs en France. En 2012, Omar Sy devient le premier acteur noir à recevoir le César du meilleur acteur.'],
-    ],
-    2: [
       ['Qui a réalisé Le Fabuleux Destin d\'Amélie Poulain (2001) ?', 'Jean-Pierre Jeunet', 'Luc Besson', 'Jacques Audiard', 'Michel Gondry',
         'Le film suit Amélie, une jeune serveuse de Montmartre, interprétée par Audrey Tautou, qui décide de faire le bonheur des gens autour d\'elle. Le café des Deux Moulins, où elle travaille, existe vraiment et attire encore les touristes. La musique de Yann Tiersen est devenue célèbre dans le monde entier, et le film a été nommé cinq fois aux Oscars.'],
       ['Quelle actrice française a reçu l\'Oscar de la meilleure actrice pour La Môme ?', 'Marion Cotillard', 'Juliette Binoche', 'Audrey Tautou', 'Isabelle Huppert',
@@ -275,6 +334,18 @@ const BANQUE = {
         'Le petit vagabond au chapeau melon, à la canne et à la démarche de canard apparaît en 1914. Charlie Chaplin l\'incarne pendant plus de vingt ans dans des films comme Le Kid ou Les Temps modernes (1936). En 1940, Chaplin ridiculise Hitler dans Le Dictateur, son premier vrai film parlant. Monsieur Hulot est le personnage de Jacques Tati.'],
       ['Quelle est la plus haute récompense du Festival de Cannes ?', 'La Palme d\'or', 'Le Lion d\'or', 'L\'Ours d\'or', 'Le César',
         'Le premier festival de Cannes devait avoir lieu en septembre 1939, mais il est annulé par la déclaration de guerre. Il naît finalement en 1946. Le prix principal s\'appelait d\'abord le Grand Prix ; la Palme d\'or, dont la forme rappelle les palmiers de la Croisette et les armoiries de la ville, apparaît en 1955. Le Lion d\'or récompense le festival de Venise et l\'Ours d\'or celui de Berlin.'],
+    ],
+    2: [
+      ['Quel acteur a joué le gendarme Cruchot dans Le Gendarme de Saint-Tropez ?', 'Louis de Funès', 'Bourvil', 'Fernandel', 'Jean Gabin',
+        'Louis de Funès a longtemps enchaîné les petits rôles avant de devenir une star à près de 50 ans, en 1964, avec Le Gendarme de Saint-Tropez et Fantômas. Ses mimiques et ses colères ont fait de lui l\'acteur comique le plus populaire de France. Il tourne six films de la série du Gendarme, et forme avec Bourvil un duo mythique dans Le Corniaud et La Grande Vadrouille.'],
+      ['Quel film de Luc Besson (1988) raconte la rivalité de deux champions de plongée en apnée ?', 'Le Grand Bleu', 'Nikita', 'Subway', 'Léon',
+        'Le film s\'inspire des plongeurs Jacques Mayol et Enzo Maiorca. Présenté en ouverture du Festival de Cannes, il est éreinté par la critique, mais le public lui fait un triomphe : environ 9 millions de spectateurs en France. Il devient un film culte pour toute une génération, et la musique d\'Éric Serra reçoit un César.'],
+      ['Qui a réalisé Le Parrain (1972) ?', 'Francis Ford Coppola', 'Martin Scorsese', 'Brian De Palma', 'Sergio Leone',
+        'Adapté du roman de Mario Puzo, Le Parrain raconte la famille mafieuse Corleone. Les producteurs ne voulaient ni de Marlon Brando, jugé difficile, ni d\'Al Pacino, alors inconnu ; Coppola s\'est battu pour les imposer. Brando reçoit l\'Oscar du meilleur acteur mais le refuse, pour protester contre le traitement des Amérindiens par Hollywood. Le film est régulièrement classé parmi les meilleurs de tous les temps.'],
+      ['Quel personnage apparaît pour la première fois dans le dessin animé Steamboat Willie (1928) ?', 'Mickey Mouse', 'Félix le Chat', 'Betty Boop', 'Donald Duck',
+        'Sorti le 18 novembre 1928, Steamboat Willie est l\'un des premiers dessins animés avec un son parfaitement synchronisé à l\'image, et son succès lance Mickey. Walt Disney fait lui-même la voix de la souris. Cette date est considérée comme l\'anniversaire officiel de Mickey. Depuis le 1ᵉʳ janvier 2024, cette toute première version de Mickey est entrée dans le domaine public aux États-Unis.'],
+      ['Quel film de Jacques Demy est entièrement chanté ?', 'Les Parapluies de Cherbourg', 'Les Demoiselles de Rochefort', 'Peau d\'âne', 'Lola',
+        'Dans Les Parapluies de Cherbourg (1964), tous les dialogues, même les plus banals, sont chantés, sur la musique de Michel Legrand. Le film révèle Catherine Deneuve, alors âgée de 20 ans, et remporte la Palme d\'or à Cannes. Les Demoiselles de Rochefort (1967), autre comédie musicale de Demy, alterne au contraire chansons et dialogues parlés.'],
     ],
     3: [
       ['Où a eu lieu, le 28 décembre 1895, la première séance publique et payante du cinématographe Lumière ?', 'Au Salon indien du Grand Café', 'À l\'Opéra Garnier', 'Au Moulin Rouge', 'Au théâtre de l\'Odéon',
@@ -302,8 +373,6 @@ const BANQUE = {
         'Piaf écrit elle-même les paroles de La Vie en rose en 1945, sur une musique de Louiguy. Née en 1915 à Paris dans une famille très pauvre, elle a commencé en chantant dans la rue, d\'où son premier surnom, « la Môme Piaf ». Elle devient l\'une des plus grandes voix de la chanson française et compose aussi L\'Hymne à l\'amour pour le boxeur Marcel Cerdan, l\'amour de sa vie.'],
       ['Quel enfant prodige autrichien a composé La Flûte enchantée ?', 'Wolfgang Amadeus Mozart', 'Joseph Haydn', 'Franz Schubert', 'Johann Strauss',
         'Né à Salzbourg en 1756, Mozart compose ses premières pièces vers 5 ans et part dès 6 ans en tournée dans toute l\'Europe avec son père et sa sœur. Il écrit plus de 600 œuvres en à peine 35 ans de vie. La Flûte enchantée est créée en 1791, quelques semaines avant sa mort. Il laisse inachevé son Requiem, qui sera terminé par son élève Süssmayr.'],
-    ],
-    2: [
       ['Combien de touches compte un piano standard ?', '88', '64', '76', '100',
         'Un piano standard compte 52 touches blanches et 36 noires, soit plus de sept octaves. Il a été inventé vers 1700 à Florence par Bartolomeo Cristofori. Son nom complet, « pianoforte », signifie « doux et fort » en italien, car contrairement au clavecin, on peut y jouer plus ou moins fort selon la force avec laquelle on appuie sur les touches.'],
       ['Qui a composé Les Quatre Saisons ?', 'Antonio Vivaldi', 'Jean-Sébastien Bach', 'Georg Friedrich Haendel', 'Arcangelo Corelli',
@@ -314,6 +383,18 @@ const BANQUE = {
         'Ravel compose le Boléro en 1928 pour la danseuse Ida Rubinstein. L\'œuvre répète la même mélodie, avec un rythme de caisse claire qui ne s\'arrête jamais, en ajoutant peu à peu des instruments jusqu\'à un final explosif. Ravel la considérait comme une simple expérience d\'orchestration et s\'étonnait de son immense succès. C\'est l\'une des œuvres classiques les plus jouées au monde.'],
       ['Qui a composé La Marseillaise ?', 'Rouget de Lisle', 'Hector Berlioz', 'Jean-Baptiste Lully', 'Étienne Méhul',
         'Claude Joseph Rouget de Lisle, officier du génie, la compose à Strasbourg dans la nuit du 25 au 26 avril 1792, sous le titre de Chant de guerre pour l\'armée du Rhin. Elle prend le nom de La Marseillaise parce qu\'elle est chantée par les volontaires venus de Marseille en entrant dans Paris. Elle devient l\'hymne national en 1795, puis de nouveau, définitivement, en 1879.'],
+    ],
+    2: [
+      ['Quel compositeur a écrit le célèbre quintette La Truite ?', 'Franz Schubert', 'Robert Schumann', 'Johannes Brahms', 'Felix Mendelssohn',
+        'Schubert compose d\'abord une chanson, un « lied », intitulée La Truite, en 1817. Deux ans plus tard, un amateur de musique lui commande un quintette où il reprend cette mélodie sous forme de variations. Schubert meurt en 1828, à seulement 31 ans, après avoir écrit plus de 600 lieder. Il vivait souvent dans la pauvreté, hébergé par ses amis.'],
+      ['Quel chanteur a créé Ne me quitte pas en 1959 ?', 'Jacques Brel', 'Georges Brassens', 'Charles Aznavour', 'Léo Ferré',
+        'Le chanteur belge Jacques Brel écrit cette chanson après une rupture amoureuse. Elle sera reprise par des dizaines d\'artistes dans le monde entier, de Nina Simone à Sting. Au sommet de sa gloire, Brel arrête la scène en 1967. Il part ensuite naviguer, puis s\'installe aux îles Marquises, en Polynésie. Il meurt en 1978 et repose à Hiva Oa, non loin de la tombe du peintre Paul Gauguin.'],
+      ['Quel instrument à clavier, à cordes pincées, a précédé le piano ?', 'Le clavecin', 'L\'orgue', 'Le célesta', 'L\'harmonium',
+        'Dans le clavecin, chaque touche actionne un petit bec, autrefois taillé dans une plume d\'oiseau, qui pince la corde. Le son est brillant, mais on ne peut pas jouer plus ou moins fort en appuyant différemment. C\'est l\'instrument roi de la musique baroque, de Couperin à Bach et Rameau. À la fin du XVIIIᵉ siècle, il est détrôné par le pianoforte, où des marteaux frappent les cordes.'],
+      ['De quel pays vient le groupe ABBA ?', 'La Suède', 'La Norvège', 'Le Danemark', 'Les Pays-Bas',
+        'ABBA est formé des initiales de ses quatre membres : Agnetha, Björn, Benny et Anni-Frid. Le groupe devient célèbre en remportant le concours Eurovision de la chanson en 1974 avec Waterloo. Il vend ensuite des centaines de millions de disques. Séparé en 1982, ABBA a connu une seconde vie grâce à la comédie musicale Mamma Mia!, puis avec un nouvel album en 2021.'],
+      ['Quels instruments forment un quatuor à cordes classique ?', 'Deux violons, un alto et un violoncelle', 'Un violon, un alto, un violoncelle et une contrebasse', 'Quatre violons', 'Deux violons, un violoncelle et une contrebasse',
+        'Cette formation s\'impose au XVIIIᵉ siècle avec Joseph Haydn, surnommé le « père du quatuor à cordes », qui en a composé environ 70. L\'alto, un peu plus grand que le violon, joue entre les deux. Le quatuor est considéré comme la forme la plus exigeante de la musique de chambre : Beethoven y a écrit à la fin de sa vie certaines de ses œuvres les plus audacieuses.'],
     ],
     3: [
       ['De quel opéra est tiré l\'air « L\'amour est un oiseau rebelle » ?', 'Carmen', 'Les Pêcheurs de perles', 'La Traviata', 'Aida',
@@ -341,8 +422,6 @@ const BANQUE = {
         'Les anneaux ont été dessinés en 1913 par Pierre de Coubertin, le fondateur des Jeux olympiques modernes. Ils symbolisent l\'union des cinq continents. Les couleurs ont été choisies parce qu\'avec le fond blanc, elles permettaient de reproduire au moins une couleur de chaque drapeau national de l\'époque.'],
       ['Quelle course cycliste est surnommée « la Grande Boucle » ?', 'Le Tour de France', 'Le Tour d\'Italie', 'Paris-Roubaix', 'Le Tour d\'Espagne',
         'Le Tour de France est créé en 1903 par Henri Desgrange et le journal L\'Auto, qui veut augmenter ses ventes. Le maillot jaune apparaît en 1919 : sa couleur est celle du papier du journal. Depuis 1975, l\'arrivée finale a lieu traditionnellement sur les Champs-Élysées, à Paris.'],
-    ],
-    2: [
       ['En quelle année la France a-t-elle gagné sa première Coupe du monde de football ?', '1998', '1984', '1990', '2006',
         'La France organise le tournoi chez elle. Le 12 juillet 1998, au Stade de France, les Bleus d\'Aimé Jacquet battent le Brésil de Ronaldo 3-0. Zinédine Zidane marque deux buts de la tête et Emmanuel Petit le troisième. Le soir même, plus d\'un million de personnes fêtent la victoire sur les Champs-Élysées. Attention au piège : 1984 est l\'année de la première victoire française à l\'Euro, avec Michel Platini.'],
       ['Qui détient le record du monde du 100 mètres ?', 'Usain Bolt', 'Carl Lewis', 'Tyson Gay', 'Justin Gatlin',
@@ -353,6 +432,18 @@ const BANQUE = {
         'L\'essai vaut 5 points depuis 1992 ; il en valait 4 auparavant, et encore moins aux origines du jeu. Son nom vient du fait qu\'au début, poser le ballon derrière la ligne ne rapportait aucun point : cela donnait seulement le droit d\'« essayer » de tirer au but. Aujourd\'hui, la transformation qui suit l\'essai rapporte 2 points de plus.'],
       ['Quelle course transatlantique en solitaire relie Saint-Malo à la Guadeloupe ?', 'La Route du Rhum', 'La Transat Jacques Vabre', 'La Solitaire du Figaro', 'Le Trophée Jules Verne',
         'La Route du Rhum a lieu tous les quatre ans depuis 1978. La première édition reste légendaire : le Canadien Mike Birch gagne avec seulement 98 secondes d\'avance sur le Français Michel Malinovsky, après plus de 23 jours de course. Lors de cette même édition, le navigateur Alain Colas disparaît en mer avec son bateau, Manureva, qui n\'a jamais été retrouvé.'],
+    ],
+    2: [
+      ['Quel joueur de tennis français a remporté Roland-Garros en 1983 ?', 'Yannick Noah', 'Henri Leconte', 'Guy Forget', 'Cédric Pioline',
+        'En battant le Suédois Mats Wilander en finale, Yannick Noah offre à la France sa première victoire à Roland-Garros depuis 1946. Son père se précipite sur le court pour l\'embrasser, une image restée célèbre. Il reste à ce jour le dernier Français à avoir gagné un tournoi du Grand Chelem en simple messieurs. Il devient ensuite chanteur, et capitaine de l\'équipe de France victorieuse de la Coupe Davis en 1991.'],
+      ['Combien de fois Paris a-t-il accueilli les Jeux olympiques d\'été, en comptant 2024 ?', '3 fois', '2 fois', '4 fois', '1 fois',
+        'Paris a organisé les Jeux en 1900, en 1924 et en 2024. En 1900, ils s\'étalent sur cinq mois en marge de l\'Exposition universelle, et les femmes y participent pour la première fois. Les Jeux de 1924 sont immortalisés par le film Les Chariots de feu, et le nageur Johnny Weissmuller, futur Tarzan au cinéma, y remporte trois médailles d\'or. En 2024, la cérémonie d\'ouverture se déroule pour la première fois hors d\'un stade, sur la Seine.'],
+      ['Quelle est la distance officielle d\'un marathon ?', '42,195 km', '40 km', '42 km', '45 km',
+        'Selon la légende, le soldat grec Phidippidès aurait couru de Marathon à Athènes pour annoncer la victoire sur les Perses, avant de mourir d\'épuisement. Aux Jeux de Londres en 1908, le parcours est fixé à 42,195 km pour partir du château de Windsor et arriver devant la loge royale du stade. Cette distance devient officielle en 1921.'],
+      ['Quel club a été le premier club français à remporter la Ligue des champions ?', 'L\'Olympique de Marseille', 'Le Paris Saint-Germain', 'L\'AS Monaco', 'Les Girondins de Bordeaux',
+        'Le 26 mai 1993 à Munich, l\'OM bat le Milan AC 1-0 grâce à un but de la tête de Basile Boli. Quelques semaines plus tard éclate l\'affaire VA-OM, un match de championnat truqué : Marseille se voit retirer son titre de champion de France 1993, mais conserve sa Coupe d\'Europe. Il faudra attendre 2025 pour qu\'un deuxième club français, le Paris Saint-Germain, remporte la compétition.'],
+      ['Quel judoka français a remporté trois titres olympiques en individuel ?', 'Teddy Riner', 'David Douillet', 'Djamel Bouras', 'Frédéric Demontfaucon',
+        'Teddy Riner est champion olympique des poids lourds à Londres en 2012, à Rio en 2016, puis à Paris en 2024, à domicile. Il a aussi remporté 11 titres de champion du monde en individuel, un record absolu, et deux titres olympiques par équipes. Pendant près de dix ans, entre 2010 et 2020, il n\'a perdu aucun combat. David Douillet, autre grande légende française, a été deux fois champion olympique.'],
     ],
     3: [
       ['Quelle navigatrice a battu en 2005 le record du tour du monde à la voile en solitaire ?', 'Ellen MacArthur', 'Florence Arthaud', 'Isabelle Autissier', 'Catherine Chabaud',
@@ -380,8 +471,6 @@ const BANQUE = {
         'Le chêne peut vivre plus de 1 000 ans. En Normandie, le chêne d\'Allouville-Bellefosse abrite même deux petites chapelles construites dans son tronc creux au XVIIᵉ siècle. Ses glands nourrissent de nombreux animaux, et le geai des chênes, en les cachant pour l\'hiver puis en en oubliant une partie, aide à planter de nouvelles forêts.'],
       ['Quel est le plus grand oiseau du monde ?', 'L\'autruche', 'L\'émeu', 'Le condor', 'L\'albatros',
         'L\'autruche peut mesurer jusqu\'à 2,7 mètres et peser environ 150 kg. Trop lourde pour voler, elle court en revanche jusqu\'à environ 70 km/h. Elle pond le plus gros œuf du monde, qui pèse environ 1,5 kg, l\'équivalent d\'une vingtaine d\'œufs de poule. Contrairement à la légende, elle ne se cache pas la tête dans le sable.'],
-    ],
-    2: [
       ['Combien de cœurs a une pieuvre ?', '3', '1', '2', '8',
         'La pieuvre a deux cœurs qui envoient le sang dans les branchies et un troisième qui l\'envoie dans le reste du corps. Son sang est bleu, car il transporte l\'oxygène grâce à du cuivre et non du fer comme le nôtre. Autre particularité : environ deux tiers de ses neurones se trouvent dans ses huit bras, qui peuvent presque agir de façon indépendante.'],
       ['Quel animal est le symbole du WWF ?', 'Le panda géant', 'Le koala', 'L\'ours polaire', 'Le tigre',
@@ -392,6 +481,18 @@ const BANQUE = {
         'L\'éphémère passe l\'essentiel de sa vie, de quelques mois à deux ans, sous forme de larve dans l\'eau douce. Une fois adulte, il n\'a souvent même pas de bouche fonctionnelle : il ne mange pas et ne vit que pour se reproduire avant de mourir, en quelques heures ou un jour. Son nom vient du grec ephêmeros, « qui ne dure qu\'un jour ».'],
       ['Quel est le seul mammifère capable de vraiment voler ?', 'La chauve-souris', 'L\'écureuil volant', 'Le colugo', 'L\'ornithorynque',
         'Les chauves-souris sont les seuls mammifères capables d\'un vol actif, en battant des ailes. Les écureuils volants et les colugos, eux, ne font que planer. On compte environ 1 400 espèces de chauves-souris, soit près d\'un mammifère sur cinq. Beaucoup se repèrent dans le noir par écholocation : elles émettent des ultrasons et écoutent leur écho.'],
+    ],
+    2: [
+      ['Quel est le plus grand félin du monde ?', 'Le tigre', 'Le lion', 'Le jaguar', 'Le léopard',
+        'Le tigre de Sibérie, aussi appelé tigre de l\'Amour, peut dépasser 300 kg chez les grands mâles, ce qui en fait le plus grand félin sauvage. Les rayures de chaque tigre sont uniques, comme nos empreintes digitales, et sa peau elle-même est rayée sous le pelage. Il ne resterait qu\'environ 5 500 tigres à l\'état sauvage, mais leur nombre remonte lentement dans certains pays comme l\'Inde et le Népal.'],
+      ['Combien de temps dure la gestation d\'une éléphante ?', 'Environ 22 mois', 'Environ 9 mois', 'Environ 12 mois', 'Environ 36 mois',
+        'C\'est la gestation la plus longue de tous les mammifères terrestres : près de deux ans. À la naissance, l\'éléphanteau pèse déjà environ 100 kg et tient debout au bout de quelques minutes. Il est élevé par tout le groupe familial, dirigé par une vieille femelle, la matriarche, dont la mémoire des points d\'eau est vitale en période de sécheresse.'],
+      ['Quel animal fabrique la soie utilisée dans le textile ?', 'La chenille du bombyx du mûrier', 'Une araignée', 'L\'abeille', 'La fourmi tisserande',
+        'Le « ver à soie » est en réalité la chenille d\'un papillon, le bombyx, qui se nourrit de feuilles de mûrier. Pour se transformer, elle s\'enferme dans un cocon formé d\'un seul fil qui peut dépasser un kilomètre de long. La Chine a gardé le secret de sa fabrication pendant des millénaires, d\'où la « route de la soie ». En France, Lyon est devenue la capitale de la soierie à partir du XVIᵉ siècle.'],
+      ['Quel conifère perd ses aiguilles en hiver ?', 'Le mélèze', 'Le sapin', 'L\'épicéa', 'Le pin',
+        'Le mélèze est le seul conifère d\'Europe à perdre ses aiguilles chaque automne, après qu\'elles ont pris une magnifique couleur dorée. Cela lui permet de résister à des hivers extrêmes en montagne, jusqu\'à plus de 2 000 mètres. Son bois, riche en résine, résiste très bien à l\'humidité : on l\'utilise depuis toujours pour les chalets, les bardages et les bateaux.'],
+      ['Quel oiseau est capable de voler en marche arrière ?', 'Le colibri', 'Le martinet', 'L\'hirondelle', 'Le martin-pêcheur',
+        'Le colibri bat des ailes jusqu\'à environ 80 fois par seconde, en dessinant un huit, ce qui lui permet de faire du surplace devant les fleurs et même de reculer. Son cœur peut dépasser 1 000 battements par minute. Pour économiser son énergie la nuit, il tombe dans une sorte de mini-hibernation. Le plus petit, le colibri d\'Elena de Cuba, pèse moins de 2 grammes : c\'est le plus petit oiseau du monde.'],
     ],
     3: [
       ['Quel vertébré détient le record connu de longévité ?', 'Le requin du Groenland', 'La tortue géante des Galápagos', 'La baleine boréale', 'La carpe koï',
