@@ -1,10 +1,11 @@
 // Service worker : garde l'appli en mémoire pour jouer sans connexion.
-const SHELL_CACHE = 'quizculture-shell-v2';
+const SHELL_CACHE = 'quizculture-shell-v3';
 const SHELL = [
   './',
   'index.html',
   'style.css',
   'app.js',
+  'retirees.js',
   'questions.js',
   'questions/sciences.js',
   'questions/gastronomie.js',
