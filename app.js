@@ -45,12 +45,13 @@ function shuffle(list) {
 
 // ---------- Mémoire locale ----------
 
+// Préfixe « quiz. » : Wind Spot est hébergé à la même adresse et partage ce stockage.
 const store = {
   get(key, fallback) {
-    try { const v = localStorage.getItem(key); return v == null ? fallback : JSON.parse(v); } catch (e) { return fallback; }
+    try { const v = localStorage.getItem('quiz.' + key); return v == null ? fallback : JSON.parse(v); } catch (e) { return fallback; }
   },
   set(key, value) {
-    try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* stockage indisponible : tant pis */ }
+    try { localStorage.setItem('quiz.' + key, JSON.stringify(value)); } catch (e) { /* stockage indisponible : tant pis */ }
   },
 };
 
